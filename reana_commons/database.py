@@ -32,11 +32,15 @@ from .config import SQLALCHEMY_DATABASE_URI
 
 from reana_commons.models import Base  # isort:skip  # noqa
 
-engine = create_engine(SQLALCHEMY_DATABASE_URI)
-Session = scoped_session(sessionmaker(autocommit=False,
-                                      autoflush=False,
-                                      bind=engine))
-Base.query = Session.query_property()
+engine = create_engine(SQLALCHEMY_DATABASE_URI, isolation_level="AUTOCOMMIT")
+
+def load_session():
+    """Load SQLAlchemy session."""
+    db_session = scoped_session(sessionmaker(autocommit=False,
+                                             autoflush=False,
+                                             bind=engine))
+    Base.query = db_session.query_property()
+    return db_session
 
 
 def init_db():
