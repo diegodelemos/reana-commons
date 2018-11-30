@@ -699,6 +699,10 @@
           },
           {
             "description": "Required. New workflow status.",
+            "enum": [
+              "start",
+              "stopped"
+            ],
             "in": "query",
             "name": "status",
             "required": true,
