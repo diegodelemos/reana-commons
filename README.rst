@@ -30,8 +30,12 @@ schemas shared by the REANA cluster components.
 Features
 --------
 
+- common API clients for internal communication
+- centralised OpenAPI specifications for REANA components
+- AMQP connection management and communication
+- common Celery tasks
+- centralised configuration
 - utility functions for cluster components
-- database models and schemas
 
 Useful links
 ------------
